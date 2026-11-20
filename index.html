@@ -36,7 +36,7 @@
   .lockup svg { width: 44px; height: 44px; flex-shrink: 0; }
   .wordmark { display: flex; flex-direction: column; gap: 4px; line-height: 1; }
   .wordmark .w1 { font-size: 20px; font-weight: 800; letter-spacing: 0.04em; }
-  .wordmark .w2 { font-size: 9px; font-weight: 500; letter-spacing: 0.36em; }
+  .wordmark .w2 { font-size: 10px; font-weight: 500; letter-spacing: 0.36em; }
 
   main {
     flex: 1;
@@ -60,7 +60,15 @@
     color: var(--white);
     margin-bottom: 24px;
   }
-  h1 span { color: var(--orange); }
+  main > section { min-width: 0; }
+  h1 .rot { display: block; max-width: 100%; color: var(--orange); white-space: nowrap; height: 1.2em; margin-bottom: -0.12em; overflow: hidden; }
+  h1 .rot-word { display: inline-block; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    h1 .rot-word { transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s ease; }
+    h1 .rot-word.out { transform: translateY(-0.6em); opacity: 0; }
+    h1 .rot-word.in  { transform: translateY(0.6em);  opacity: 0; transition: none; }
+  }
   p.lede {
     font-size: 18px; line-height: 1.6;
     color: var(--cream);
@@ -112,21 +120,84 @@
 <main>
   <section>
     <div class="eyebrow">San Francisco, California</div>
-    <h1>GPU capacity,<br>brokered for<br><span>AI teams.</span></h1>
-    <p class="lede">We broker GPU compute capacity for AI companies, matching teams that need to train and run models with data center and cloud providers that have capacity available.</p>
+    <h1>
+      <span class="sr-only">GPU capacity, brokered for AI teams, frontier labs, robotics labs, inference clouds, AI startups, research labs, enterprise AI and sovereign AI.</span>
+      <span aria-hidden="true">GPU capacity,<br>brokered for<span class="rot"><span class="rot-word" id="rot-word">AI teams.</span></span></span>
+    </h1>
+    <p class="lede">We broker compute capacity, matching teams that need to train and run models with data center and cloud providers that have GPUs available.</p>
     <div class="contact">
       <a class="cta" href="mailto:hello@bayviewcompute.com">Get in touch &rarr;</a>
       <span class="addr">hello@bayviewcompute.com</span>
     </div>
   </section>
 
-  <div class="hero-mark"><svg viewBox="0 0 64 64" role="img" aria-label="Bayview Compute logo"><defs><clipPath id="bvc-hero"><circle cx="32" cy="32" r="32"/></clipPath></defs><g clip-path="url(#bvc-hero)"><rect width="64" height="64" fill="#E8D8C4"/><circle cx="44.5" cy="27" r="13" fill="#F4793E"/><rect x="0" y="43.6" width="64" height="21" fill="#C49D6E"/><g transform="translate(7.04 8.56) scale(0.78)"><path d="M3 30.2 H61 V31.8 L49.3 34.6 H39.9 Q32.3 32.4 24.7 34.6 H16.1 L3 31.8 Z" fill="#231F20"/><path d="M16.3 34 H18.3 L19 48 H15.6 Z M22.5 34 H24.5 L25.2 48 H21.8 Z M40.1 34 H42.1 L42.8 48 H39.4 Z M47.1 34 H49.1 L49.8 48 H46.4 Z" fill="#231F20"/><path d="M18.4 36.5 L22.4 41.5 M22.4 36.5 L18.4 41.5 M18.4 42.5 L22.4 46.5 M22.4 42.5 L18.4 46.5 M42.2 36.5 L47 41.5 M47 36.5 L42.2 41.5 M42.2 42.5 L47 46.5 M47 42.5 L42.2 46.5" stroke="#231F20" stroke-width="0.9"/><g stroke="#231F20" stroke-width="1.7" fill="none"><path d="M43.8 30.3 L46.7 18.2 M52.2 30.3 L49.3 18.2 M44.6 27 H51.4 M45.5 23.2 H50.5 M46.2 20.3 H49.8"/></g><rect x="45.7" y="16.4" width="4.6" height="1.9" fill="#231F20"/></g><rect x="8" y="46" width="48" height="2.6" rx="0.6" fill="#231F20"/></g><circle cx="32" cy="32" r="31.2" fill="none" stroke="#231F20" stroke-width="1.6"/></svg></div>
+  <div class="hero-mark"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><clipPath id="bvc-hero"><circle cx="32" cy="32" r="32"/></clipPath></defs><g clip-path="url(#bvc-hero)"><rect width="64" height="64" fill="#E8D8C4"/><circle cx="44.5" cy="27" r="13" fill="#F4793E"/><rect x="0" y="43.6" width="64" height="21" fill="#C49D6E"/><g transform="translate(7.04 8.56) scale(0.78)"><path d="M3 30.2 H61 V31.8 L49.3 34.6 H39.9 Q32.3 32.4 24.7 34.6 H16.1 L3 31.8 Z" fill="#231F20"/><path d="M16.3 34 H18.3 L19 48 H15.6 Z M22.5 34 H24.5 L25.2 48 H21.8 Z M40.1 34 H42.1 L42.8 48 H39.4 Z M47.1 34 H49.1 L49.8 48 H46.4 Z" fill="#231F20"/><path d="M18.4 36.5 L22.4 41.5 M22.4 36.5 L18.4 41.5 M18.4 42.5 L22.4 46.5 M22.4 42.5 L18.4 46.5 M42.2 36.5 L47 41.5 M47 36.5 L42.2 41.5 M42.2 42.5 L47 46.5 M47 42.5 L42.2 46.5" stroke="#231F20" stroke-width="0.9"/><g stroke="#231F20" stroke-width="1.7" fill="none"><path d="M43.8 30.3 L46.7 18.2 M52.2 30.3 L49.3 18.2 M44.6 27 H51.4 M45.5 23.2 H50.5 M46.2 20.3 H49.8"/></g><rect x="45.7" y="16.4" width="4.6" height="1.9" fill="#231F20"/></g><rect x="8" y="46" width="48" height="2.6" rx="0.6" fill="#231F20"/></g><circle cx="32" cy="32" r="31.2" fill="none" stroke="#231F20" stroke-width="1.6"/></svg></div>
 </main>
 
 <footer>
   <div>&copy; 2026 Bayview Compute &middot; San Francisco, CA</div>
   <div><a href="mailto:hello@bayviewcompute.com">hello@bayviewcompute.com</a></div>
 </footer>
+
+<script>
+  // Edit this list to change the rotating audience. The first entry is what shows
+  // without JavaScript, with reduced motion turned on, and where the rotation stops.
+  var AUDIENCES = ["AI teams.", "frontier labs.", "robotics labs.", "inference clouds.", "AI startups.", "research labs.", "enterprise AI.", "sovereign AI."];
+  var HOLD_MS = 2400;   // time each word stays on screen
+  var CYCLES = 2;       // full passes before it settles on the first word
+
+  (function () {
+    var el = document.getElementById("rot-word");
+    if (!el) return;
+    var box = el.parentNode;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function fit() {
+      // Shrink a long word so it never overflows its column.
+      el.style.fontSize = "";
+      var avail = box.clientWidth, need = el.scrollWidth;
+      if (need > avail && need > 0) el.style.fontSize = (avail / need) + "em";
+    }
+    window.addEventListener("resize", fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    fit();
+    if (reduce || AUDIENCES.length < 2) return;
+
+    var h1 = box.closest("h1");
+    var i = 0, steps = AUDIENCES.length * CYCLES;
+    var hoverPaused = false, timer = null, waiting = false;
+
+    function paused() { return hoverPaused; }
+    function finish() {}
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(tick, HOLD_MS);
+    }
+    function tick() {
+      if (paused()) { waiting = true; return; }
+      if (--steps < 0) { finish(); return; }
+      i = (i + 1) % AUDIENCES.length;
+      el.classList.add("out");
+      setTimeout(function () {
+        el.textContent = AUDIENCES[i];
+        el.classList.remove("out");
+        el.classList.add("in");
+        fit();
+        void el.offsetWidth;
+        el.classList.remove("in");
+        if (steps === 0) { finish(); return; }   // landed back on the first word
+        schedule();
+      }, 450);
+    }
+    function resumeIfWaiting() {
+      if (!paused() && waiting) { waiting = false; schedule(); }
+    }
+
+    h1.addEventListener("mouseenter", function () { hoverPaused = true; });
+    h1.addEventListener("mouseleave", function () { hoverPaused = false; resumeIfWaiting(); });
+    schedule();
+  })();
+</script>
 
 </body>
 </html>
