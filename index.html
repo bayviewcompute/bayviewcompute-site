@@ -141,10 +141,10 @@
 
 <script>
   // Edit this list to change the rotating audience. The first entry is what shows
-  // without JavaScript, with reduced motion turned on, and where the rotation stops.
+  // first, and what shows without JavaScript or with reduced motion turned on.
   var AUDIENCES = ["AI teams.", "frontier labs.", "robotics labs.", "inference clouds.", "AI startups.", "research labs.", "enterprise AI.", "sovereign AI."];
   var HOLD_MS = 2400;   // time each word stays on screen
-  var CYCLES = 2;       // full passes before it settles on the first word
+  var CYCLES = Infinity; // full passes before it settles on the first word (Infinity = never stops)
 
   (function () {
     var el = document.getElementById("rot-word");
